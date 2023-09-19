@@ -21,14 +21,14 @@ def selectSong(url, output):
             if 'itag="22"' in i:
                 itag = 22
                 stream = yt.streams.get_by_itag(itag)
-                stream.download('Videos')
+                stream.download(output)
             elif 'itag="18"' in str(i):
                 stream = yt.streams.get_by_itag(18)
-                stream.download('Videos')
+                stream.download(output)
             else:
                 print('nada') 
-        video = VideoFileClip(os.path.join("Videos",title))
-        video.audio.write_audiofile(os.path.join("Videos",title2))
+        video = VideoFileClip(os.path.join(f'{output}\{title}'))
+        video.audio.write_audiofile(os.path.join(f'{output}\{title2}'))
         video.close()
         os.remove(filename)
         break
